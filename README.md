@@ -1,4 +1,4 @@
-# Damage Detectors
+# Project Proposal
 
 ## Introduction and Background
 Natural disaster zones are difficult to navigate, and it may take weeks or months to understand the full scope of structural and human damage. An efficient and accurate classification model could take available satellite imagery from affected areas and classify the level of structural damage. This would greatly reduce the speed of response and decrease the risk for relief workers. 
