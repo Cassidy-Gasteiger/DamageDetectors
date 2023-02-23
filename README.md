@@ -8,7 +8,7 @@ Previous research has highlighted the effectiveness of neural networks as they r
 
 ## Problem Definition and Dataset
 
-In this project, we want to: 
+In this project, we aim to: 
 
 1.	Accurately classify damaged and undamaged buildings from post-hurricane satellite imagery  
 2.	Test generalizability of our classification model on other post-disaster datasets 
