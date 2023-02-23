@@ -25,6 +25,7 @@ For image classification, we will build a Convolutional Neural Network. The netw
 To achieve optimal results, we’ll do hyperparameter tuning, e.g., number of layers, embedding size, Adam Optimizer parameters, etc. 
 
 When testing generalizability on the xBD dataset, we will: 
+
 1.	Use unsupervised algorithms like k-Means + Transfer Learning, DBSCAN, and GMM to generate clusters of images with and without buildings.  
 2.	In images with buildings, use a segmentation approach to capture each building’s polygon. 
 3.	Apply the CNN model to the encoded building images and analyze the results across each hurricane. 
@@ -41,12 +42,11 @@ When testing generalizability, we expect to see a decrease in the F1 score. Prev
 
 ## Timeline and Responsibility Distribution
 
-
-<img width="77" alt="Vaani_Signature" src="https://user-images.githubusercontent.com/76833593/221007788-568c8ac1-0048-4fb3-98bd-b1da875c5f41.png">
+<img width="430" alt="Timeline_Proposal" src="https://user-images.githubusercontent.com/76833593/221018129-a13bf99d-dd6d-4744-8114-2f6899812a75.PNG">
 
 ## Team Contribution to the Project Proposal
 
-
+<img width="275" alt="TeamContribution_Proposal" src="https://user-images.githubusercontent.com/76833593/221018157-a236c1c9-70d0-4abe-8053-3a8f7da79a8e.PNG">
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
