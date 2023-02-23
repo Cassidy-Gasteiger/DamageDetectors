@@ -41,7 +41,12 @@ When testing generalizability, we expect to see a decrease in the F1 score. Prev
 
 ## Timeline and Responsibility Distribution
 
+
+<img width="77" alt="Vaani_Signature" src="https://user-images.githubusercontent.com/76833593/221007788-568c8ac1-0048-4fb3-98bd-b1da875c5f41.png">
+
 ## Team Contribution to the Project Proposal
+
+
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
