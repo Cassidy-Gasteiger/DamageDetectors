@@ -30,7 +30,7 @@ When testing generalizability on the xBD dataset, we will:
 2.	In images with buildings, use a segmentation approach to capture each building’s polygon. 
 3.	Apply the CNN model to the encoded building images and analyze the results across each hurricane. 
 
-We’ll use PyTorch and use the PACE COC-ICE cluster. 
+We’ll use PyTorch and the PACE COC-ICE cluster. 
 
 ![image](https://user-images.githubusercontent.com/95386379/219880890-f71051e4-094b-46a7-afb5-b80021993729.png)
 
