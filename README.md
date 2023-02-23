@@ -1,6 +1,6 @@
 # Project Proposal
 
-## Introduction and Background
+## Introduction and Backgr
 Natural disaster zones are difficult to navigate, and it may take weeks or months to understand the full scope of structural and human damage. An efficient and accurate classification model could take available satellite imagery from affected areas and classify the level of structural damage. This would greatly reduce the speed of response and decrease the risk for relief workers. 
 
 Previous research has highlighted the effectiveness of neural networks as they reduce high dimensionality of images without losing information and demonstrate high accuracy in detecting post-disaster building and vegetation damage.<sup>1, 2, 3</sup> Existing damage classification models also incorporate additional features like geolocation data and flood risk index to provide a highly granular map of damage.<sup>4</sup>
