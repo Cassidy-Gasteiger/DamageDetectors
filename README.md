@@ -34,7 +34,13 @@ We’ll use PyTorch and the PACE COC-ICE cluster.
 
 ![image](https://user-images.githubusercontent.com/95386379/219880890-f71051e4-094b-46a7-afb5-b80021993729.png)
 
-## Potential Results and Discussion
+## Initial Results and Discussion
+
+In our first phase of work, we have explored and cleaned both of our datasets: the Hurricane Harvey image dataset and the images from the larger-scale XBD dataset that show post-hurricane disaster zones. 
+
+An initial look at the damaged and undamaged Hurricane Harvey images does not show a clear visual distinction between the two types of images.
+
+![image](damaged_undamaged_images.png)
 
 With the classification model, we hope to obtain results where images are accurately classified into one of the sub-categories. To measure its performance, we will use the accuracy and F1-score functions. For the clustering model, we will use elbow method for number of cluster selection and silhouette scores and Davies-Bouldin Index for tuning. 
 
