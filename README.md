@@ -36,11 +36,25 @@ We’ll use PyTorch and the PACE COC-ICE cluster.
 
 ## Initial Results and Discussion
 
-In our first phase of work, we have explored and cleaned both of our datasets: the Hurricane Harvey image dataset and the images from the larger-scale XBD dataset that show post-hurricane disaster zones. 
+In our first phase of work, we have explored and cleaned both of our datasets: the Hurricane Harvey image dataset and the images from the larger-scale XBD dataset that show post-hurricane disaster zones.  
 
-An initial look at the damaged and undamaged Hurricane Harvey images does not show a clear visual distinction between the two types of images.
+An initial look at the damaged and undamaged Hurricane Harvey images does not show a clear visual distinction between the two types of images, although many of the damanged images may show standing bodies of water around the houses. The dataset is close to balanced, with 13,933 damaged images and 10,384 undamaged images. All images are already of the same dimensions.
 
 ![image](damaged_undamaged_images.png)
+
+We explored the geolocation features associated with the image set and found that both damaged and undamaged buildings appear at similar coordinates. 
+
+![image](damaged_undamaged.png)
+
+In addition, we found that there was not a statistically significant difference in elevation between damaged and undamaged buildings
+
+![image](elevation.png)
+
+Finally, we explored color features of our images to investigate whether there were visible differences between damaged and undamaged building images. It appears that there's a higher proportion of blue in damaged building images, which we hypothesize may be due to the increased presence of standing water in these images.
+
+![image](color_scatters.png)
+
+Next, we normalized our image data to ensure pixel density was scaled between 0 and 1.
 
 With the classification model, we hope to obtain results where images are accurately classified into one of the sub-categories. To measure its performance, we will use the accuracy and F1-score functions. For the clustering model, we will use elbow method for number of cluster selection and silhouette scores and Davies-Bouldin Index for tuning. 
 
