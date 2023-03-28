@@ -53,6 +53,7 @@ In addition, we found that there was not a statistically significant difference 
 Finally, we explored color features of our images to investigate whether there were visible differences between damaged and undamaged building images. It appears that there's a higher proportion of blue in damaged building images, which we hypothesize may be due to the increased presence of standing water in these images.
 
 ![image](color_scatters.png)
+![image](color_scatters_damaged.png)
 
 Next, we normalized our image data to ensure pixel intensity was scaled between 0 and 1 and conducted PCA. (ADD STUFF ABOUT THIS LATER)
 
