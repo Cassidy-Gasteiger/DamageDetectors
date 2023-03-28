@@ -54,7 +54,7 @@ Finally, we explored color features of our images to investigate whether there w
 
 ![image](color_scatters.png)
 
-Next, we normalized our image data to ensure pixel density was scaled between 0 and 1.
+Next, we normalized our image data to ensure pixel intensity was scaled between 0 and 1 and conducted PCA. (ADD STUFF ABOUT THIS LATER)
 
 With the classification model, we hope to obtain results where images are accurately classified into one of the sub-categories. To measure its performance, we will use the accuracy and F1-score functions. For the clustering model, we will use elbow method for number of cluster selection and silhouette scores and Davies-Bouldin Index for tuning. 
 
