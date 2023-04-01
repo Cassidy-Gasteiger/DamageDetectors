@@ -48,13 +48,9 @@ Given the computational needs of the model, we opted to use the GPU feature of C
 
 ### Data Exploration
 
-<u> Hurricane Harvey Dataset <u> - 
+**Hurricane Harvey Dataset -**
 
-![image](https://user-images.githubusercontent.com/95386379/219880890-f71051e4-094b-46a7-afb5-b80021993729.png)
-
-In our first phase of work, we explored and cleaned both datasets: the Hurricane Harvey image dataset and the images from the larger-scale XBD dataset that show post-hurricane disaster zones.  
-
-An initial look at the damaged and undamaged Hurricane Harvey images does not reveal a clear visual distinction between the two types of images, although it appears that many of the damanged images may show standing bodies of water around the houses. The dataset is close to balanced, with 13,933 damaged images and 10,384 undamaged images. All images are of the same dimensions.
+An initial look at the damaged and undamaged Hurricane Harvey images does not reveal a clear visual distinction between the two types of images, although it appears that many of the damaged images may show standing bodies of water around the houses. The dataset is close to balanced, with 13,933 damaged images and 10,384 undamaged images. All images are of the same dimensions. 
 
 ![image](damaged_undamaged_images.png)
 
@@ -69,6 +65,13 @@ In addition, we found that there was not a statistically significant difference 
 Finally, we explored color features of our images to investigate whether there were visible color differences between damaged and undamaged building images. It appears that there's a higher mean value of red pixels in damaged building images, but otherwise the distributions appear similar.
 
 ![image](color_scatters.png)
+![image](color_scatters_damaged.png)
+
+**xBD Dataset - **
+
+We started with sampling some images to understand the potential errors of the model we will build in the next step of this project. There were difficulties working with the TIF image format, which was the format of all the images in the dataset. The Python Imaging Library does not support multi-channel 32-bit TIF images so we used NumPy to create an array of RGB values. We then were able to plot this array using matplotlib.  
+
+![image](<img width="224" alt="prehurricane_florence" src="https://user-images.githubusercontent.com/76833593/229260340-12166e76-942b-4e5f-a95a-4669ca0e1c70.PNG">)
 ![image](color_scatters_damaged.png)
 
 Next, we normalized our image data to ensure pixel intensity was scaled between 0 and 1 and conducted PCA. (ADD STUFF ABOUT THIS LATER)
