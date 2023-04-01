@@ -13,7 +13,21 @@ In this project, we aim to:
 1.	Accurately classify damaged and undamaged buildings from post-hurricane satellite imagery  
 2.	Test generalizability of our classification model on other post-disaster datasets 
 
-Our main dataset comprises of around 24,000 satellite images depicting structures in the aftermath of Hurricane Harvey, pre-labeled to indicate damage. The geolocation data includes distance from the nearest water body and building elevation. We will test the model’s generalizability on Stanford’s xBD building dataset (59K hurricane images) that spans a range of geographies and natural disasters. 
+## Data Collection
+
+For this project, we are working with two large image datasets. The main dataset was sourced from a research paper titled, “Post-Hurricane Damage Assessment Using Satellite Imagery and Geolocation Features” <sup> 4 </sup> and comprises of around 24,000 unique, RGB satellite images depicting structures in the aftermath of Hurricane Harvey. These images are pre-labeled to indicate damaged and undamaged buildings and the size of the images is consistent at 250 x 250 pixels. Along with the image data provided, we have geolocation data that includes: 
+
+    1. Distance from the nearest water body 
+
+    2. Building elevation  
+
+    3. X and Y coordinates of the buildings 
+
+After downloading the dataset, we conducted data exploration in a Kaggle notebook before accessing the dataset via the Kaggle API in a Google Colab notebook for pre-processing and model building. 
+
+We intend on testing the model’s generalizability on other post-disaster images now that we’ve built a supervised classification model on the Hurricane Harvey image dataset. For this task, we are using Stanford’s xBD building dataset [5][6] which consists of over 59,000 pre- and post-hurricane images that span a range of geographies and natural disasters. The images come with building polygons, ordinal labels of damage level, and corresponding satellite metadata. Additionally, the dataset contains bounding boxes and labels for environmental factors such as fire, water, and smoke. 
+
+While there is a manageable amount of pre- and post-hurricane images in the xBD dataset, the entire dataset contains over 850,000 building polygons. Our challenge was finding a suitable work environment to filter through this data. We attempted to load and unzip the data files on Georgia Tech’s Phoenix Supercomputer’s PACE cluster but quickly reached the storage quota as the size of the entire dataset is 140GB. Our local systems and free workspaces such as Kaggle and Colab weren’t able to handle the massive dataset as well. Hence after updating Colab, we loaded the entire 140GB dataset and started exploring it. 
 
 
 ## Methods
