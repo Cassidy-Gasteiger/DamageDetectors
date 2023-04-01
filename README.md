@@ -71,7 +71,9 @@ Finally, we explored color features of our images to investigate whether there w
 
 We started with sampling some images to understand the potential errors of the model we will build in the next step of this project. There were difficulties working with the TIF image format, which was the format of all the images in the dataset. The Python Imaging Library does not support multi-channel 32-bit TIF images so we used NumPy to create an array of RGB values. We then were able to plot this array using matplotlib.  
 
-<img width="459" alt="preandpost" src="https://user-images.githubusercontent.com/76833593/229260554-5e323fd2-7e11-48b7-9ee1-0137879bafd0.PNG">
+<p align="center">
+    <img width="459" alt="preandpost" src="https://user-images.githubusercontent.com/76833593/229260554-5e323fd2-7e11-48b7-9ee1-0137879bafd0.PNG">
+</p>
 
 Next, we normalized our image data to ensure pixel intensity was scaled between 0 and 1 and conducted PCA. (ADD STUFF ABOUT THIS LATER)
 
