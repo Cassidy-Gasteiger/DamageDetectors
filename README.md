@@ -46,7 +46,7 @@ Given the computational needs of the model, we opted to use the GPU feature of C
 
 ## Results and Discussion
 
-### Data Exploration
+### Data Exploration:
 
 **Hurricane Harvey Dataset -**
 
@@ -69,11 +69,48 @@ Finally, we explored color features of our images to investigate whether there w
 
 **xBD Dataset - **
 
-We started with sampling some images to understand the potential errors of the model we will build in the next step of this project. There were difficulties working with the TIF image format, which was the format of all the images in the dataset. The Python Imaging Library does not support multi-channel 32-bit TIF images so we used NumPy to create an array of RGB values. We then were able to plot this array using matplotlib.  
+We started with sampling some images to understand the potential errors of the model we will build in the next step of this project. There were difficulties working with the TIF image format, which was the format of all the images in the dataset. The Python Imaging Library does not support multi-channel 32-bit TIF images so we used NumPy to create an array of RGB values. We then were able to plot this array using matplotlib.
 
 <p align="center">
     <img width="459" alt="preandpost" src="https://user-images.githubusercontent.com/76833593/229260554-5e323fd2-7e11-48b7-9ee1-0137879bafd0.PNG">
 </p>
+
+The first image is pre-Hurricane Florence and the second image is post-Hurricane Florence.
+
+Once we had the images, we created a table representing the essential information of each image:  
+
+    1. Pre/Post disaster label 
+    2. Geographical coordinates 
+    3. Sun elevation 
+    4. GSD (Ground Sampling Distance) 
+    5. Quantification of no damage/major damage/minor damage/destroyed. 
+    
+The geographical coordinates will be important in ensuring that our model is classifying the data by damage rather than location of the data. Variables such as the sun elevation and the solar azimuth angle will be key indicators in detecting damage. An interesting column is GSD, which gives us an idea of the spatial resolution of the images. Finally, the quantification of damage will serve as the labels of our data. During training, we must normalize the images to a certain set resolution. To help with that, we plotted the resolution of images based on the disaster it corresponded to: 
+
+<p align="center">
+    <img width="400" alt="image1" src="https://user-images.githubusercontent.com/76833593/229260877-fbbb20f6-fc4d-498d-8b69-8cd2280f433a.PNG">
+</p>
+
+We also charted the number of images per disaster as it guides us to how large our dataset of solely hurricane images will be:
+
+<p align="center">
+    <img width="394" alt="image2" src="https://user-images.githubusercontent.com/76833593/229260903-c6bd546c-9fa3-4138-a120-9fecc9370726.PNG">
+</p>
+
+We see that Hurricane Michael and Hurricane Florence have the highest number of images available. We are naturally ignoring the images from Hurricane Harvey as we’ve trained our model using these images.  
+
+### Data Cleaning and Preprocessing:  
+
+**Hurricane Harvey Dataset -**
+We rescaled all images from 250 x 250 pixels to 150 x 150 pixels to reduce the training time of our deep learning classification model. We then normalized our images by pixel density to scale the pixel values between 0 and 1, as network training convergence depends on the normalized values.  
+
+Next, we tested two data preprocessing techniques: PCA and K-Means clustering for image compression. The goal was to decrease model training time by reducing the total number of pixels in each image. K-Means image compression was theoretically successful, and reducing the images to just ten clusters while maintaining most important image features: 
+
+![image](KMeans_Clustering.png)
+
+However, both methods were extremely computationally intensive given the size and scale of our dataset, and we lacked the computing resources to execute them successfully. Ultimately, we concluded that even if these compression techniques led to decreased model training times, this approach would be net negative for time and computing resources compared to training the model on the uncompressed images given the extensive computing power required to compress the images. Finally, we converted the images to a tensor for use in our CNN model.
+
+### Model Evaluation and Validation: 
 
 Next, we normalized our image data to ensure pixel intensity was scaled between 0 and 1 and conducted PCA. (ADD STUFF ABOUT THIS LATER)
 
