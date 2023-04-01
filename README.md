@@ -6,7 +6,7 @@ Natural disaster zones are difficult to navigate, and it may take weeks or month
 
 Previous research has highlighted the effectiveness of neural networks as they reduce high dimensionality of images without losing information and demonstrate high accuracy in detecting post-disaster building and vegetation damage <sup>1, 2, 3</sup>. Existing damage classification models also incorporate additional features like geolocation data and flood risk index to provide a highly granular map of damage. <sup> 4 </sup>
 
-## Problem Definition and Dataset
+## Problem Definition
 
 In this project, we aim to: 
 
