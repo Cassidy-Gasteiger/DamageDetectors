@@ -32,23 +32,21 @@ While there is a manageable amount of pre- and post-hurricane images in the xBD 
 
 ## Methods
 
-We’ll begin preprocessing the data by removing images where the buildings can’t be seen clearly. We’ll then resize, adjust for noise, rotate the images if necessary, and combine the geolocation data with the image data using geo-coordinates. 
+As the image dataset we’ve selected is pre-labelled, we constructed a Convolutional Neural Network (CNN) in PyTorch for the purpose of image classification. In the hidden layers of the network, ReLU was used as the activation function. Our model incorporates a mixture of dense layers, max pooling, convolutional 2D, and flattening to classify our images. Please find below a description of the layers: 
 
-For image classification, we will build a Convolutional Neural Network. The network will comprise of an image encoder, connected layers that encode the geolocation features, layers to combine the encoded terms, and finally, a multi-class prediction layer. The combined image and geolocation embedding will feed in to a SoftMax layer resulting in a one-hot encoded vector. 
+    - 4 convolution layers with stride as 1 and padding as a 2-dimensional matrix with values as 1 
+    - 4 layers of max pooling 
+    - 5 ReLU activation layers 
+    - 2 linear layers 
+    - In the final layer, we switched the activation function to Sigmoid so as to convert the model’s output into a probability score that estimates the likelihood that a given image belongs to a specific classification 
+    
+As the images can take only two different labels (damaged and undamaged), we chose Binary Cross Entropy as our loss function. The optimizer that we chose was RMSprop, as it increases the learning rate and allows the model to converge faster.  
 
-To achieve optimal results, we’ll do hyperparameter tuning, e.g., number of layers, embedding size, Adam Optimizer parameters, etc. 
-
-When testing generalizability on the xBD dataset, we will: 
-
-1.	Use unsupervised algorithms like k-Means + Transfer Learning, DBSCAN, and GMM to generate clusters of images with and without buildings.  
-2.	In images with buildings, use a segmentation approach to capture each building’s polygon. 
-3.	Apply the CNN model to the encoded building images and analyze the results across each hurricane. 
-
-We’ll use PyTorch and the PACE COC-ICE cluster. 
-
-![image](https://user-images.githubusercontent.com/95386379/219880890-f71051e4-094b-46a7-afb5-b80021993729.png)
+Given the computational needs of the model, we opted to use the GPU feature of Colab and used the CUDA toolkit for this purpose. We then split the images into a train, validation, and test set with a 60%, 20%, and 20% distribution, respectively. Each set was equally balanced with images of damaged buildings and images of undamaged buildings to avoid model biases. We chose to run for a total of 10 epochs as we didn’t want to risk overfitting the model and were getting strong performance on the validation dataset at the end of 10 epochs.  
 
 ## Initial Results and Discussion
+
+![image](https://user-images.githubusercontent.com/95386379/219880890-f71051e4-094b-46a7-afb5-b80021993729.png)
 
 In our first phase of work, we explored and cleaned both datasets: the Hurricane Harvey image dataset and the images from the larger-scale XBD dataset that show post-hurricane disaster zones.  
 
