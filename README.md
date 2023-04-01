@@ -1,4 +1,4 @@
-# Project Proposal
+# Project Midterm Report
 
 ## Introduction and Background
 
