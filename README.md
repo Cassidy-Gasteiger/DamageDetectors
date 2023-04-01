@@ -17,11 +17,11 @@ In this project, we aim to:
 
 For this project, we are working with two large image datasets. The main dataset was sourced from a research paper titled, “Post-Hurricane Damage Assessment Using Satellite Imagery and Geolocation Features” <sup> 4 </sup> and comprises of around 24,000 unique, RGB satellite images depicting structures in the aftermath of Hurricane Harvey. These images are pre-labeled to indicate damaged and undamaged buildings and the size of the images is consistent at 250 x 250 pixels. Along with the image data provided, we have geolocation data that includes: 
 
-    1. Distance from the nearest water body 
+1. Distance from the nearest water body 
 
-    2. Building elevation  
+2. Building elevation  
 
-    3. X and Y coordinates of the buildings 
+3. X and Y coordinates of the buildings 
 
 After downloading the dataset, we conducted data exploration in a Kaggle notebook before accessing the dataset via the Kaggle API in a Google Colab notebook for pre-processing and model building. 
 
@@ -79,11 +79,11 @@ The first image is pre-Hurricane Florence and the second image is post-Hurricane
 
 Once we had the images, we created a table representing the essential information of each image:  
 
-    1. Pre/Post disaster label 
-    2. Geographical coordinates 
-    3. Sun elevation 
-    4. GSD (Ground Sampling Distance) 
-    5. Quantification of no damage/major damage/minor damage/destroyed. 
+1. Pre/Post disaster label 
+2. Geographical coordinates 
+3. Sun elevation 
+4. GSD (Ground Sampling Distance) 
+5. Quantification of no damage/major damage/minor damage/destroyed. 
     
 The geographical coordinates will be important in ensuring that our model is classifying the data by damage rather than location of the data. Variables such as the sun elevation and the solar azimuth angle will be key indicators in detecting damage. An interesting column is GSD, which gives us an idea of the spatial resolution of the images. Finally, the quantification of damage will serve as the labels of our data. During training, we must normalize the images to a certain set resolution. To help with that, we plotted the resolution of images based on the disaster it corresponded to: 
 
@@ -114,13 +114,13 @@ However, both methods were extremely computationally intensive given the size an
 
 We used a threshold of 0.5 for calculating the accuracy metric.  After running the model for 10 epochs, we observed the following: 
 
-**Train and Validation Accuracy - ** 
+**Train and Validation Accuracy -** 
 
 ![image](model_accuracy_plot.png)
 
 The above graph shows the accuracy of the model as a function of epoch. We see that the train accuracy continues to increase as well as the validation accuracy with the exception of the eighth epoch. 
 
-**Train and Validation Loss - ** 
+**Train and Validation Loss -** 
 
 ![image](model_loss_plot.png)
 
