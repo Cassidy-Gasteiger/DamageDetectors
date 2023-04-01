@@ -25,7 +25,7 @@ For this project, we are working with two large image datasets. The main dataset
 
 After downloading the dataset, we conducted data exploration in a Kaggle notebook before accessing the dataset via the Kaggle API in a Google Colab notebook for pre-processing and model building. 
 
-We intend on testing the model’s generalizability on other post-disaster images now that we’ve built a supervised classification model on the Hurricane Harvey image dataset. For this task, we are using Stanford’s xBD building dataset <sup> 5,6 </sup> which consists of over 59,000 pre- and post-hurricane images that span a range of geographies and natural disasters. The images come with building polygons, ordinal labels of damage level, and corresponding satellite metadata. Additionally, the dataset contains bounding boxes and labels for environmental factors such as fire, water, and smoke. 
+We intend on testing the model’s generalizability on other post-disaster images now that we’ve built a supervised classification model on the Hurricane Harvey image dataset. For this task, we are using Stanford’s xBD building dataset <sup> 2 </sup> which consists of over 59,000 pre- and post-hurricane images that span a range of geographies and natural disasters. The images come with building polygons, ordinal labels of damage level, and corresponding satellite metadata. Additionally, the dataset contains bounding boxes and labels for environmental factors such as fire, water, and smoke. 
 
 While there is a manageable amount of pre- and post-hurricane images in the xBD dataset, the entire dataset contains over 850,000 building polygons. Our challenge was finding a suitable work environment to filter through this data. We attempted to load and unzip the data files on Georgia Tech’s Phoenix Supercomputer’s PACE cluster but quickly reached the storage quota as the size of the entire dataset is 140GB. Our local systems and free workspaces such as Kaggle and Colab weren’t able to handle the massive dataset as well. Hence after updating Colab, we loaded the entire 140GB dataset and started exploring it. 
 
@@ -34,11 +34,11 @@ While there is a manageable amount of pre- and post-hurricane images in the xBD 
 
 As the image dataset we’ve selected is pre-labelled, we constructed a Convolutional Neural Network (CNN) in PyTorch for the purpose of image classification. In the hidden layers of the network, ReLU was used as the activation function. Our model incorporates a mixture of dense layers, max pooling, convolutional 2D, and flattening to classify our images. Please find below a description of the layers: 
 
-    - 4 convolution layers with stride as 1 and padding as a 2-dimensional matrix with values as 1 
-    - 4 layers of max pooling 
-    - 5 ReLU activation layers 
-    - 2 linear layers 
-    - In the final layer, we switched the activation function to Sigmoid so as to convert the model’s output into a probability score that estimates the likelihood that a given image belongs to a specific classification 
+- 4 convolution layers with stride as 1 and padding as a 2-dimensional matrix with values as 1 
+- 4 layers of max pooling 
+- 5 ReLU activation layers 
+- 2 linear layers 
+- In the final layer, we switched the activation function to Sigmoid so as to convert the model’s output into a probability score that estimates the likelihood that a given image belongs to a specific classification 
     
 As the images can take only two different labels (damaged and undamaged), we chose Binary Cross Entropy as our loss function. The optimizer that we chose was RMSprop, as it increases the learning rate and allows the model to converge faster.  
 
@@ -128,13 +128,19 @@ The above graph shows the loss of the model as a function of epoch. We again see
 
 Upon running our model on the test dataset, we noted an accuracy of 0.8374.
 
+### Next Steps: 
+
+In Phase 2, we will explore adding geolocation data as features to our Hurricane Harvey model to see if it improves performance. In addition to feature adding and selection, we will also take care of weight regularization and add dropout layers. In addition, we will implement data augmentation techniques to further improve the generalizability of the model. For example, we intend to experiment with adjusting the light level, the brightness of the image, cropping the image, rotating, transforming, flipping the image, and other techniques.   
+
+In Phase 2 we will implement a clustering model to identify images in the xBD dataset with buildings present. We will also test the generalizability of our Hurricane Harvey model on this dataset and compare performance and how well our model does on datasets that it has not seen. 
+
 ## Timeline and Responsibility Distribution
 
 <img width="430" alt="Timeline_Proposal" src="https://user-images.githubusercontent.com/76833593/221018129-a13bf99d-dd6d-4744-8114-2f6899812a75.PNG">
 
 ## Team Contribution to the Project Proposal
 
-<img width="275" alt="TeamContribution_Proposal" src="https://user-images.githubusercontent.com/76833593/221018157-a236c1c9-70d0-4abe-8053-3a8f7da79a8e.PNG">
+<img width="371" alt="newcontributiontable" src="https://user-images.githubusercontent.com/76833593/229261266-968a86f9-852e-42e8-b2a7-0594af6d0925.PNG">
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
@@ -144,6 +150,8 @@ Upon running our model on the test dataset, we noted an accuracy of 0.8374.
 3. Khajwal, Asim B., Chih-Shen Cheng, and Arash Noshadravan. “Multi-view Deep Learning for Reliable Post-Disaster Damage Classification.” ArxIv, Cornell University. 2022.
 
 4. Cao, Quoc Dung and Youngjun Choe. “Post-Hurricane Damage Assessment Using Satellite Imagery and Geolocation Features.” Department of Industrial and Systems Engineering, University of Washington, Seattle, WA. 2020.
+
+
 
 
 ## Datasets
