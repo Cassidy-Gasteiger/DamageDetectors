@@ -67,7 +67,7 @@ Finally, we explored color features of our images to investigate whether there w
 ![image](color_scatters.png)
 ![image](color_scatters_damaged.png)
 
-**xBD Dataset - **
+**xBD Dataset -**
 
 We started with sampling some images to understand the potential errors of the model we will build in the next step of this project. There were difficulties working with the TIF image format, which was the format of all the images in the dataset. The Python Imaging Library does not support multi-channel 32-bit TIF images so we used NumPy to create an array of RGB values. We then were able to plot this array using matplotlib.
 
@@ -112,11 +112,21 @@ However, both methods were extremely computationally intensive given the size an
 
 ### Model Evaluation and Validation: 
 
-Next, we normalized our image data to ensure pixel intensity was scaled between 0 and 1 and conducted PCA. (ADD STUFF ABOUT THIS LATER)
+We used a threshold of 0.5 for calculating the accuracy metric.  After running the model for 10 epochs, we observed the following: 
 
-With the classification model, we hope to obtain results where images are accurately classified into one of the sub-categories. To measure its performance, we will use the accuracy and F1-score functions. For the clustering model, we will use elbow method for number of cluster selection and silhouette scores and Davies-Bouldin Index for tuning. 
+**Train and Validation Accuracy - ** 
 
-When testing generalizability, we expect to see a decrease in the F1 score. Previous research suggests that generalizing the model to identify damage from new disasters is challenging for various reasons, like differing pixel distributions. In addition, the clustering algorithm may recognize hidden features, e.g., geographical coloring, which may not be related to building presence. 
+![image](model_accuracy_plot.png)
+
+The above graph shows the accuracy of the model as a function of epoch. We see that the train accuracy continues to increase as well as the validation accuracy with the exception of the eighth epoch. 
+
+**Train and Validation Loss - ** 
+
+![image](model_loss_plot.png)
+
+The above graph shows the loss of the model as a function of epoch. We again see that the train loss decreases along with the validation loss with the exception of the eighth epoch. One reason for why the eighth epoch is showing such results may be due to overfitting of the model. The model may be learning patterns in the training data that cannot be generalized for the validation data set. Some methods we could take to avoid such overfitting could be weight regularization, adding dropout layers or data augmentation. 
+
+Upon running our model on the test dataset, we noted an accuracy of 0.8374.
 
 ## Timeline and Responsibility Distribution
 
