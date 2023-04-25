@@ -210,13 +210,12 @@ After running the clustering algorithm, we observed a clear distinction between 
 We could conclude in this iteration of the algorithm, Cluster 1 seems to contain images of undamaged buildings and Cluster 2 contains images of damaged buildings. 
 
 ##### Comparing the Clustering Model with Supervised CNN
-Given the test accuracies, we see that the Supervised CNN outperforms the Unsupervised Clustering model in terms of grouping/labeling unlabeled data.
+Given the test accuracies, we see that the Supervised CNN outperforms the Unsupervised Clustering model in terms of grouping/labeling unlabeled data. The supervised CNN achieved an accuracy of 83.74% while the K-Means Clustering algorithm achieved a maximum accuracy of 69.84%. While the unsupervised model had a lesser performance than the CNN, it performed extremely well for a model that has been trained on only unlabeled data.  
 
 
-## Team Contributions to the Project
+## Team Contribution to the Project Final
 
 ![ContributionTable](https://user-images.githubusercontent.com/95386379/234158959-bf83eb56-bf6a-4e01-a482-e4f7aed90445.png)
-All team members have contributed equally to the development of this report.
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
