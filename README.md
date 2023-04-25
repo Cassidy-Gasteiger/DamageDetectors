@@ -104,26 +104,26 @@ The xBD dataset had 4 labels (no damage, minor damage, major damage, destroyed);
 An initial look at the damaged and undamaged Hurricane Harvey images does not reveal a clear visual distinction between the two types of images, although it appears that many of the damaged images may show standing bodies of water around the houses. The dataset is close to balanced, with 13,933 damaged images and 10,384 undamaged images. All images are of the same dimensions.
 
 <div style="text-align:center">
-    ![Harvey_Sample_Images](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged_images.png)
+    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged_images.png" alt="Harvey Sample Images" width="800"/>
 </div>
 
 We explored the geolocation features associated with the image set and found that both damaged and undamaged buildings appear at similar coordinates.
 
 <div style="text-align:center">
-    ![X_Y_Coordinates](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged.png)
+     <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged.png" alt="Harvey Geolocation Features" width="800"/>
 </div>
     
 In addition, we found that there was not a statistically significant difference in elevation between damaged and undamaged buildings.
 
 <div style="text-align:center">
-    ![Elevation_Harvey](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/elevation.png)
+     <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/elevation.png" alt="Harvey Elevation Boxplots" width="800"/>
 </div>
 
 Finally, we explored color features of our images to investigate whether there were visible color differences between damaged and undamaged building images. It appears that there’s a higher mean value of red pixels in damaged building images, but otherwise the distributions appear similar.
 
 <div style="text-align:center">
-    ![undamaged_color_scatters](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters.png)
-    ![damaged_color_scatters](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters_damaged.png)
+    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters.png" alt="Undamaged Color Scatters" width="400"/>
+    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters_damaged.png" alt="Damaged Color Scatters" width="400"/>
 </div>
 
 #### xBD Dataset 
@@ -131,7 +131,7 @@ Finally, we explored color features of our images to investigate whether there w
 We started with sampling some images to understand our image dataset. The below images show damaged (on the left) and undamaged (on the right) buildings in post-Hurricane Florence.
 
 <div style="text-align:center">
-    ![Harvey_Sample_Images](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/xBD_damaged_undamaged.png)
+    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/xBD_damaged_undamaged.png" alt="Florence Sample Images" width="400"/>
 </div>
 
 Once we had the images, we created a table representing the essential information of each image:
@@ -146,7 +146,7 @@ The geographical coordinates will be important in ensuring that our model is cla
 We also charted the number of images per disaster as it guides us to how large our dataset of solely hurricane images will be:
 
 <div style="text-align:center">
-    ![xbd_images_per_hurricane](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/hurricane_xbd_counts.png)
+    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/hurricane_xbd_counts.png" alt="XBD Images Per Hurricane" width="400"/>
 </div>
 
 We see that Hurricane Michael and Hurricane Florence have the highest number of images available. We are naturally ignoring the images from Hurricane Harvey as we’ve trained our model using these images.
