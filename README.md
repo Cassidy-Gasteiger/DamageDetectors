@@ -212,7 +212,7 @@ We could conclude in this iteration of the algorithm, Cluster 1 seems to contain
 
 ## Team Contribution to the Project Final
 
-<img width="371" alt="updatedcontributiontable" src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/Contribution_Table.png">
+![ContributionTable](https://user-images.githubusercontent.com/95386379/234158959-bf83eb56-bf6a-4e01-a482-e4f7aed90445.png)
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
