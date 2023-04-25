@@ -213,9 +213,10 @@ We could conclude in this iteration of the algorithm, Cluster 1 seems to contain
 Given the test accuracies, we see that the Supervised CNN outperforms the Unsupervised Clustering model in terms of grouping/labeling unlabeled data.
 
 
-## Team Contribution to the Project Final
+## Team Contributions to the Project
 
 ![ContributionTable](https://user-images.githubusercontent.com/95386379/234158959-bf83eb56-bf6a-4e01-a482-e4f7aed90445.png)
+All team members have contributed equally to the development of this report.
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
