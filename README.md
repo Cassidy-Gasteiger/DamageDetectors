@@ -73,8 +73,10 @@ To compress the images, we constructed a Deep CNN Autoencoder. Autoencoders work
 Before passing our images into the autoencoder, we converted each of them from color to grayscale. This was done to reduce the number of dimensions in the image and improve the effectiveness of the compression we intended to do. The layers of our autoencoder look like:
 
 1.	Encoder - 
+
 - 2 convolution layers with stride as 2, kernel as 3, activation function as ReLU and padding as a 3-dimensional matrix
 2.	Decoder - 
+
 - 2 transposed convolution layers stride as 2, kernel as 3, activation function as ReLU and padding as a 3-dimensional matrix
 - 1 convolution layer with an activation function as Sigmoid
 
