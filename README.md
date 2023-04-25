@@ -210,6 +210,17 @@ Above is the accuracy and runtime of testing the model (which was trained on the
 We strongly believe that all our metrics will be better if we are able to better convert the images from tiff to jpeg. 
 Another next step is to increase the size of the testing dataset. We are currently only using the images in the testing folder of the xBD dataset, but we can include images from the training and the hold dataset as well. This may help us, but the main improvement will definitely come from finding a way to better convert the tiff images to a proper input format. 
 
+## Conclusions
+
+In conclusion, it is possible to very accurately classify post-Hurricane Harvey buildings as damaged or undamaged using a convolutional neural network approach. A K-Means autolabeler model also shows promise to accurately classify post-hurricane images as damaged or undamaged. Although these models are not necessarily highly generalizable to any post-hurricane satellite imagery, the promising results of our Harvey model demonstrate their potential for real-time damage identification in the aftermath of hurricanes, which could have promising applications for faster response time from first responders, insurance agencies, and family members.
+
+To further improve and expand this research, we recommend:
+- Incorporating geolocation information in the generalizability data. This might help capture more context around the buildings and enhance the model's ability to identify damaged structures.
+- Exploring alternative deep learning architectures. In addition to CNNs, we could investigate the effectiveness of other deep learning architectures, such as U-Net or ResNet, in classifying post-hurricane building damage. This may lead to the discovery of even more accurate and efficient models for the task at hand.
+- Improving image conversion and preprocessing so external datasets can be fed into the Harvey-trained model in an identical format with identical color depths.
+- Improving generalizability to ensure the model's applicability to a broader range of post-hurricane scenarios, we can explore other techniques to improve its generalizability. This might involve augmenting the dataset with images from different hurricanes or employing transfer learning.
+
+
 ## Team Contribution to the Project Final
 
 ![ContributionTable](https://user-images.githubusercontent.com/95386379/234158959-bf83eb56-bf6a-4e01-a482-e4f7aed90445.png)
