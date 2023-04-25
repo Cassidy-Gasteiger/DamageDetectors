@@ -123,8 +123,12 @@ Finally, we explored color features of our images to investigate whether there w
 
 <div style="text-align:center">
     <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters.png" alt="Undamaged Color Scatters" width="400"/>
+</div>
+
+<div style="text-align:center">
     <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters_damaged.png" alt="Damaged Color Scatters" width="400"/>
 </div>
+
 
 #### xBD Dataset 
 
