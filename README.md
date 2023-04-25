@@ -31,11 +31,13 @@ In addition, we used Stanford’s xBD building dataset 2 which consists of over 
 
 As the image dataset we’ve selected is pre-labelled, we constructed a Convolutional Neural Network (CNN) in PyTorch for the purpose of image classification. In the hidden layers of the network, ReLU was used as the activation function. Our model incorporates a mixture of dense layers, max pooling, convolutional 2D, and flattening to classify our images. Please find below a description of the layers:
 
-•	4 convolution layers with stride as 1 and padding as a 2-dimensional matrix with values as 1
-•	4 layers of max pooling
-•	5 ReLU activation layers
-•	2 linear layers
-•	In the final layer, we switched the activation function to Sigmoid so as to convert the model’s output into a probability score that estimates the likelihood that a given image belongs to a specific classification
+\begin{itemize}
+  \item 4 convolution layers with stride as 1 and padding as a 2-dimensional matrix with values as 1
+  \item 4 layers of max pooling
+  \item 5 ReLU activation layers
+  \item 2 linear layers
+  \item In the final layer, we switched the activation function to Sigmoid so as to convert the model’s output into a probability score that estimates the likelihood that a given image belongs to a specific classification
+\end{itemize}
 
 As the images can take only two different labels (damaged and undamaged), we chose Binary Cross Entropy as our loss function. The optimizer that we chose was RMSprop, as it increases the learning rate and allows the model to converge faster.
 
