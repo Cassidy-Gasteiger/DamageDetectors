@@ -63,6 +63,13 @@ The training loop includes computing the loss using Binary Cross-Entropy Loss (B
 
 We observe that the improvement in test accuracy using the multi-model model is not substantial. However, the performance on the validation dataset is more consistent, indicating a potentially more reliable model. Considering the considerable effort needed to gather distance and elevation data, we have decided to proceed with a model that solely utilizes image features. This approach will streamline the data collection process and still provide us with a reasonably accurate and stable model for our application.
 
+### Generalizability Test on XBD Dataset
+Using the aforementioned Stanford xBD dataset, we built a pipeline to test the generalizability of our described neural network architecture. 
+
+First, we needed to isolate the images corresponding to a hurricane, as the dataset initially contained images from various disaster types. Then, we needed to isolate images that contain buildings in them. We were able to do this as each image had a corresponding detailed description in JSON format, containing information about the level of damage and, most importantly, the presence of a building. Finally, the most challenging aspect of this model, we needed to convert the ‘tiff’ image files, the format of the xBD Dataset images, to ‘jpeg’ files, the desired input format of the PyTorch model object trained on the Hurricane Harvey dataset. 
+
+The xBD dataset had 4 labels (no damage, minor damage, major damage, destroyed); we condensed degrees of damage into a single category. Finally, we loaded the PyTorch model object trained on the Hurricane Harvey dataset ad tested model generalizability on the test dataset.
+
 ### Model 3: Image Compression
 
 The images that we’re working with in the Hurricane Harvey dataset are sized at 256 x 256 x 3 pixels and in the xBD dataset, they are larger at a size of 1024 x 1024 x 3 pixels each. While the size of each image isn’t too large to handle on our systems, a compressed image helps reduce the redundancy in the image data and allows us to build more efficient models.
@@ -88,13 +95,6 @@ The original Hurricane Harvey image dataset comes with labels that classify the 
 To tackle this issue, we constructed a clustering algorithm that would group images with damaged buildings into one cluster and create another cluster with images of undamaged buildings. This model would act as an auto-labeler where the user could feed in unlabeled images and receive an output of images clustered into their respective labels. 
 
 For the clustering task, we used KMeans Clustering on the compressed image arrays obtained from the previous model. As KMeans Clustering only works with data having a dimension less than or equal to two, we reshaped the arrays from (X, Y, Z) to (X, Y*Z) where X refers to the total number of images, Y is the total number of rows in a single image array and Z is the total number of columns in an image array. We set the total number of clusters to two and applied the algorithm.
-
-### Model 5: Generalizability on XBD Dataset
-Using the aforementioned Stanford xBD dataset, we built a pipeline to test the generalizability of our described neural network architecture. 
-
-First, we needed to isolate the images corresponding to a hurricane, as the dataset initially contained images from various disaster types. Then, we needed to isolate images that contain buildings in them. We were able to do this as each image had a corresponding detailed description in JSON format, containing information about the level of damage and, most importantly, the presence of a building. Finally, the most challenging aspect of this model, we needed to convert the ‘tiff’ image files, the format of the xBD Dataset images, to ‘jpeg’ files, the desired input format of the PyTorch model object trained on the Hurricane Harvey dataset. 
-
-The xBD dataset had 4 labels (no damage, minor damage, major damage, destroyed); we condensed degrees of damage into a single category. Finally, we loaded the PyTorch model object trained on the Hurricane Harvey dataset ad tested model generalizability on the test dataset.
 
 ## Results and Discussion
 
@@ -152,7 +152,7 @@ However, both methods were extremely computationally intensive given the size an
 
 ### Model Evaluation and Validation
 
-#### Model 1
+#### Model 1: Supervised Image Classification - CNN
 
 We used a threshold of 0.5 for calculating the accuracy metric. After running the model for 10 epochs, we observed the following:
 
@@ -173,7 +173,7 @@ We tested a range of dropout probabilities (.01 – .5) in our second-to-last po
 
 ![Augmented_Loss_and_Accuracy](https://user-images.githubusercontent.com/95386379/234157468-f3780040-7b35-4bb9-b9c9-d2358d6ae943.png)
 
-##### Model 2: Multi-Modal Model
+#### Model 2: Supervised Image Classification - Multi-Modal Model
 
 Accuracy on the test dataset: 0.9102
 
@@ -181,7 +181,16 @@ Accuracy on the test dataset: 0.9102
 
 **Comparison with baseline model**: We observe that the improvement in test accuracy using the multi-model model is not substantial. However, the performance on the validation dataset is more consistent, indicating a potentially more reliable model. Considering the considerable effort needed to gather distance and elevation data, we have decided to proceed with a model that solely utilizes image features. This approach will streamline the data collection process and still provide us with a reasonably accurate and stable model for our application.
 
-#### Model 3
+### Generalizability Test on XBD Dataset
+
+![ActualGeneralizability](https://user-images.githubusercontent.com/95386379/234158211-41d48c08-377e-4f07-a7ac-c6a9bb4528c7.png)
+
+**Comparison with baseline model**: Above is the accuracy and runtime of testing the model (which was trained on the Hurricane Harvey dataset) on the xBD dataset, specifically the images with buildings corresponding to Hurricane Michael, Florence, and Matthew. We note that the accuracy is low and specifically, an overwhelming majority of the images are predicted to contain no damage. We believe this is due to how we converted the “tiff” images to images in “jpeg” format. The accuracies of both our conversional approaches, GDAL and tifffile, had similarly mediocre accuracies. 
+
+We strongly believe that all our metrics will be better if we are able to better convert the images from tiff to jpeg. 
+Another next step is to increase the size of the testing dataset. We are currently only using the images in the testing folder of the xBD dataset, but we can include images from the training and the hold dataset as well. This may help us, but the main improvement will definitely come from finding a way to better convert the tiff images to a proper input format. 
+
+#### Model 3: Image Compression
 
 After running the autoencoder for 10 epochs, we observed the following loss plot:
 
@@ -189,7 +198,8 @@ After running the autoencoder for 10 epochs, we observed the following loss plot
 
 The above graph shows the loss of the model as a function of epoch. We see that the training loss drops drastically and continues to reduce with the validation loss. They eventually almost equal each other, which shows us that the model is being fit properly.
 
-#### Model 4
+### Model 4: Unsupervised Auto-labeler
+
 To confirm the accuracy of our clustering model, we compared the test data set images with the labels given to us.
 
 ![ModelGeneralizability](https://user-images.githubusercontent.com/95386379/234157762-16472291-332f-410b-9d8b-ce8a32b95067.png)
@@ -202,15 +212,6 @@ We could conclude in this iteration of the algorithm, Cluster 1 seems to contain
 
 ##### Comparing the Clustering Model with Supervised CNN
 Given the test accuracies, we see that the Supervised CNN outperforms the Unsupervised Clustering model in terms of grouping/labeling unlabeled data. The supervised CNN achieved an accuracy of 83.74% while the K-Means Clustering algorithm achieved a maximum accuracy of 69.84%. While the unsupervised model had a lesser performance than the CNN, it performed extremely well for a model that has been trained on only unlabeled data.  
-
-##### Model 5: Generalizability Test on XBD Dataset
-
-![ActualGeneralizability](https://user-images.githubusercontent.com/95386379/234158211-41d48c08-377e-4f07-a7ac-c6a9bb4528c7.png)
-
-**Comparison with baseline model**: Above is the accuracy and runtime of testing the model (which was trained on the Hurricane Harvey dataset) on the xBD dataset, specifically the images with buildings corresponding to Hurricane Michael, Florence, and Matthew. We note that the accuracy is low and specifically, an overwhelming majority of the images are predicted to contain no damage. We believe this is due to how we converted the “tiff” images to images in “jpeg” format. The accuracies of both our conversional approaches, GDAL and tifffile, had similarly mediocre accuracies. 
-
-We strongly believe that all our metrics will be better if we are able to better convert the images from tiff to jpeg. 
-Another next step is to increase the size of the testing dataset. We are currently only using the images in the testing folder of the xBD dataset, but we can include images from the training and the hold dataset as well. This may help us, but the main improvement will definitely come from finding a way to better convert the tiff images to a proper input format. 
 
 ## Conclusions
 
