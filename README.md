@@ -103,26 +103,26 @@ The xBD dataset had 4 labels (no damage, minor damage, major damage, destroyed);
 #### Hurricane Harvey Dataset
 An initial look at the damaged and undamaged Hurricane Harvey images does not reveal a clear visual distinction between the two types of images, although it appears that many of the damaged images may show standing bodies of water around the houses. The dataset is close to balanced, with 13,933 damaged images and 10,384 undamaged images. All images are of the same dimensions.
 
-<img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged_images.png" alt="Harvey Sample Images" width="800"/>
+![damaged_undamaged_images](https://user-images.githubusercontent.com/95386379/234157114-fd1e486f-67da-4441-ac92-c49f8c438438.png)
 
 We explored the geolocation features associated with the image set and found that both damaged and undamaged buildings appear at similar coordinates.
 
-<img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged.png" alt="Harvey Geolocation Features" width="800"/>
-    
+![damaged_undamaged_scatter](https://user-images.githubusercontent.com/95386379/234157144-25c22e24-7cf7-49e9-8db6-dbd5aca64232.png)
+
 In addition, we found that there was not a statistically significant difference in elevation between damaged and undamaged buildings.
 
-<img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/elevation.png" alt="Harvey Elevation Boxplots" width="800"/>
+![elevation](https://user-images.githubusercontent.com/95386379/234157175-93fbb9d5-eeb0-46a6-8e5c-d652b0a1e889.png)
 
 Finally, we explored color features of our images to investigate whether there were visible color differences between damaged and undamaged building images. It appears that there’s a higher mean value of red pixels in damaged building images, but otherwise the distributions appear similar.
 
-<img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters.png" alt="Undamaged Color Scatters" width="800"/>
-<img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters_damaged.png" alt="Damaged Color Scatters" width="800"/>
+![color_scatters_undamaged](https://user-images.githubusercontent.com/95386379/234157223-1715e9e4-83bc-4230-8a88-7f8d8da51b73.png)
+![color_scatters_damaged](https://user-images.githubusercontent.com/95386379/234157235-f431b01f-dc4b-4075-b436-4f16b169bc93.png)
 
 #### xBD Dataset 
 
 We started with sampling some images to understand our image dataset. The below images show damaged (on the left) and undamaged (on the right) buildings in post-Hurricane Florence.
 
-<img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/xBD_damaged_undamaged.png" alt="Florence Sample Images" width="400"/>
+![xBD_damaged_undamaged](https://user-images.githubusercontent.com/95386379/234157286-12cd422f-8465-4150-94ca-43f48a6e4f61.png)
 
 Once we had the images, we created a table representing the essential information of each image:
 1.	Pre/Post disaster label
@@ -135,7 +135,7 @@ The geographical coordinates will be important in ensuring that our model is cla
 
 We also charted the number of images per disaster as it guides us to how large our dataset of solely hurricane images will be:
 
-<img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/hurricane_xbd_counts.png" alt="XBD Images Per Hurricane" width="400"/>
+![hurricane_xbd_counts](https://user-images.githubusercontent.com/95386379/234157312-64359081-a586-4ab0-8d55-6d18a756e8e2.png)
 
 We see that Hurricane Michael and Hurricane Florence have the highest number of images available. We are naturally ignoring the images from Hurricane Harvey as we’ve trained our model using these images.
 
@@ -146,7 +146,7 @@ We see that Hurricane Michael and Hurricane Florence have the highest number of 
 We rescaled all images from 250 x 250 pixels to 150 x 150 pixels to reduce the training time of our deep learning classification model. We then normalized our images by pixel density to scale the pixel values between 0 and 1, as network training convergence depends on the normalized values.
 Next, we tested two data preprocessing techniques: PCA and K-Means clustering for image compression. The goal was to decrease model training time by reducing the total number of pixels in each image. K-Means image compression was theoretically successful, and reducing the images to just ten clusters while maintaining most important image features:
 
-ADD KMEANS IMAGES HERE
+![KMeans_Combined](https://user-images.githubusercontent.com/95386379/234157371-01539a15-62f7-4630-af7e-4125e0048821.png)
 
 However, both methods were extremely computationally intensive given the size and scale of our dataset, and we lacked the computing resources to execute them successfully. Ultimately, we concluded that even if these compression techniques led to decreased model training times, this approach would be net negative for time and computing resources compared to training the model on the uncompressed images given the extensive computing power required to compress the images. Finally, we converted the images to a tensor for use in our CNN model.
 
@@ -158,68 +158,54 @@ We used a threshold of 0.5 for calculating the accuracy metric. After running th
 
 Train and Validation Accuracy and Loss Plots:
 
-<div style="text-align:center">
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/model_accuracy_plot.png" alt="Baseline Accuracy Plot" width="400"/>
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/model_loss_plot.png" alt="Baseline Loss Plot" width="400"/>
-</div>
+![Baseline_Model_Loss_Accuracy](https://user-images.githubusercontent.com/95386379/234157407-47158f6a-c6cc-4799-a0cc-33ba62ebfd6e.png)
 
 The above graphs shows the accuracy and loss of the model as a function of epoch. We see that the train accuracy continues to increase, as well as the validation accuracy with the exception of the eighth epoch. We also see that the train loss decreases along with the validation loss with the exception of the eighth epoch. One reason for why the eighth epoch is showing such results may be due to overfitting of the model. The model may be learning patterns in the training data that cannot be generalized for the validation data set. Some methods we could take to avoid such overfitting could be weight regularization, adding dropout layers or data augmentation.
 
 Upon running our model on the test dataset, we noted an accuracy of **0.8374.**
 
-#### Regularized Model
+##### Regularized Model
 We tested a range of dropout probabilities (.01 – .5) in our second-to-last pooling layer and observed significantly decreased performance on the validation data at every probability compared to our baseline model.
 
-<div style="text-align:center">
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/Dropout_Reg_Performance.png" alt="Dropout Probability Plot" width="400"/>
-</div>
+![Dropout_Reg_Performance](https://user-images.githubusercontent.com/95386379/234157445-9df729ce-7df5-46b8-9e90-47b08d36f0f3.png)
 
 L2 regularization similarly led to decreased performance on the validation datasets. Augmenting and adding random transformations to the data led to the best results, with increased performance on validation initially, and better loss performance compared to our baseline model. However, the final validation accuracy was about equivalent to our baseline model, and performance on the test dataset decreased significantly to 59.52%.
 
-<div style="text-align:center">
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/model_accuracy_plot.png" alt="Baseline Accuracy Plot" width="400"/>
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/model_loss_plot.png" alt="Baseline Loss Plot" width="400"/>
-</div>
+![Augmented_Loss_and_Accuracy](https://user-images.githubusercontent.com/95386379/234157468-f3780040-7b35-4bb9-b9c9-d2358d6ae943.png)
 
-#### Multi-Modal Model
+##### Multi-Modal Model
 
 Accuracy on the test dataset: 0.9102
 
-<div style="text-align:center">
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/MultiModal_Accuracy_Plot.png" alt="Multimodal Accuracy Plot" width="400"/>
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/Multimodal_Loss_Plot.png" alt="Baseline Loss Plot" width="400"/>
-</div>
+![Train_Loss_MultiModal_Plot](https://user-images.githubusercontent.com/95386379/234157498-b2e9c9fc-f3b7-40a9-9901-4b5c543527aa.png)
 
 We observe that the improvement in test accuracy using the multi-model model is not substantial. However, the performance on the validation dataset is more consistent, indicating a potentially more reliable model. Considering the considerable effort needed to gather distance and elevation data, we have decided to proceed with a model that solely utilizes image features. This approach will streamline the data collection process and still provide us with a reasonably accurate and stable model for our application.
 
-#### Generalizability Test on XBD Dataset
+##### Generalizability Test on XBD Dataset
 
-![ModelGeneralizability](https://user-images.githubusercontent.com/95386379/234155920-f48602a2-4e3e-4b3a-8b80-250552b9705f.png)
+![ActualGeneralizability](https://user-images.githubusercontent.com/95386379/234158211-41d48c08-377e-4f07-a7ac-c6a9bb4528c7.png)
 
-The above table represents various metrics obtained from testing the Binary Classification Neural Network model that was trained on the Hurricane Harvey dataset on the xBD hurricane images, or in other words, our generalizability test. Accuracy is relatively low, which we hypothesize is because we were only able to convert the tiff images to black and white jpeg images and the model was trained on RGB images. We strongly believe that all our metrics will be better if we are able to resolve that issue. 
+Above is the accuracy and runtime of testing the model (which was trained on the Hurricane Harvey dataset) on the xBD dataset, specifically the images with buildings corresponding to Hurricane Michael, Florence, and Matthew. We note that the accuracy is low and specifically, an overwhelming majority of the images are predicted to contain no damage. We believe this is due to how we converted the “tiff” images to images in “jpeg” format. The accuracies of both our conversional approaches, GDAL and tifffile, had similarly mediocre accuracies. 
 
-DAMAGED IMAGES CLASSIFICATION
-
-We observe that in B/W format, it is quite difficult even for the human eye to detect damage. We also notice that we have a high number of predicted positives, leading to both a high count of True and False positives. This is because of the exact threshold we have set in our binary classification. As we adjust this threshold, the numbers would change, leading to different precision, F1, and recall scores as well. However, the feature vectors for both kinds of images are all similar, so adjusting the threshold is not a permanent fix. In other words, if we move the threshold much in any direction, we are likely to receive a high number of predicted negatives or high number of predicted positives. Nonetheless, the current threshold is tuned to lead to the highest accuracy. Another next step is to increase the size of the testing dataset. We are currently only using the images in the testing folder of the xBD dataset, but we can include images from the training and the hold dataset as well. This may help us, but the main improvement will definitely come from finding a way to convert the tiff images to RGB format. 
+We strongly believe that all our metrics will be better if we are able to better convert the images from tiff to jpeg. 
+Another next step is to increase the size of the testing dataset. We are currently only using the images in the testing folder of the xBD dataset, but we can include images from the training and the hold dataset as well. This may help us, but the main improvement will definitely come from finding a way to better convert the tiff images to a proper input format. 
 
 #### Model 2
 
 After running the autoencoder for 10 epochs, we observed the following loss plot:
 
-<div style="text-align:center">
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/Autoencoder_Loss_Plot.png" alt="Autoencoder Accuracy Plot" width="400"/>
-</div>
+![Autoencoder_Loss_Plot](https://user-images.githubusercontent.com/95386379/234157566-165ff120-7d8b-4bf3-b10a-327f4aa3d574.png)
 
 The above graph shows the loss of the model as a function of epoch. We see that the training loss drops drastically and continues to reduce with the validation loss. They eventually almost equal each other, which shows us that the model is being fit properly.
 
 #### Model 3
 To confirm the accuracy of our clustering model, we compared the test data set images with the labels given to us.
 
-TABLE
+![ModelGeneralizability](https://user-images.githubusercontent.com/95386379/234157762-16472291-332f-410b-9d8b-ce8a32b95067.png)
 
 After running the clustering algorithm, we observed a clear distinction between the two clusters created. Below we have examples of images from the two clusters:
 
-<img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/ClusteringModelingImages.png" alt="Clustered Images" width="400"/>
+![ClusteringModelingImages](https://user-images.githubusercontent.com/95386379/234157702-d6745620-0dcf-4afa-9128-5a6ab9383be3.png)
 
 We could conclude in this iteration of the algorithm, Cluster 1 seems to contain images of undamaged buildings and Cluster 2 contains images of damaged buildings. 
 
