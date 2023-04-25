@@ -235,16 +235,14 @@ TABLE
 
 After running the clustering algorithm, we observed a clear distinction between the two clusters created. Below we have examples of images from the two clusters:
 
-<div style="text-align:center">
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/ClusteringModelingImages.png" alt="Clustered Images" width="400"/>
-</div>
+<img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/ClusteringModelingImages.png" alt="Clustered Images" width="400"/>
 
 We could conclude in this iteration of the algorithm, Cluster 1 seems to contain images of undamaged buildings and Cluster 2 contains images of damaged buildings. 
 
 
 ## Team Contribution to the Project Final
 
-<img width="200" alt="updatedcontributiontable" src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/Contribution_Table.png">
+<img width="371" alt="updatedcontributiontable" src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/Contribution_Table.png">
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
