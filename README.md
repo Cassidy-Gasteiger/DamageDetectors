@@ -122,11 +122,11 @@ In addition, we found that there was not a statistically significant difference 
 Finally, we explored color features of our images to investigate whether there were visible color differences between damaged and undamaged building images. It appears that there’s a higher mean value of red pixels in damaged building images, but otherwise the distributions appear similar.
 
 <div style="text-align:center">
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters.png" alt="Undamaged Color Scatters" width="400"/>
+    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters.png" alt="Undamaged Color Scatters" width="800"/>
 </div>
 
 <div style="text-align:center">
-    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters_damaged.png" alt="Damaged Color Scatters" width="400"/>
+    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters_damaged.png" alt="Damaged Color Scatters" width="800"/>
 </div>
 
 
@@ -244,7 +244,7 @@ We could conclude in this iteration of the algorithm, Cluster 1 seems to contain
 
 ## Team Contribution to the Project Final
 
-<img width="371" alt="updatedcontributiontable" src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/Contribution_Table.png">
+<img width="200" alt="updatedcontributiontable" src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/Contribution_Table.png">
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
