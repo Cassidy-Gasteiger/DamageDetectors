@@ -169,28 +169,19 @@ We tested a range of dropout probabilities (.01 – .5) in our second-to-last po
 
 ![Dropout_Reg_Performance](https://user-images.githubusercontent.com/95386379/234157445-9df729ce-7df5-46b8-9e90-47b08d36f0f3.png)
 
-L2 regularization similarly led to decreased performance on the validation datasets. Augmenting and adding random transformations to the data led to the best results, with increased performance on validation initially, and better loss performance compared to our baseline model. However, the final validation accuracy was about equivalent to our baseline model, and performance on the test dataset decreased significantly to 59.52%.
+**Comparison with baseline model**: L2 regularization similarly led to decreased performance on the validation datasets. Augmenting and adding random transformations to the data led to the best results, with increased performance on validation initially, and better loss performance compared to our baseline model. However, the final validation accuracy was about equivalent to our baseline model, and performance on the test dataset decreased significantly to 59.52%.
 
 ![Augmented_Loss_and_Accuracy](https://user-images.githubusercontent.com/95386379/234157468-f3780040-7b35-4bb9-b9c9-d2358d6ae943.png)
 
-##### Multi-Modal Model
+##### Model 2: Multi-Modal Model
 
 Accuracy on the test dataset: 0.9102
 
 ![Train_Loss_MultiModal_Plot](https://user-images.githubusercontent.com/95386379/234157498-b2e9c9fc-f3b7-40a9-9901-4b5c543527aa.png)
 
-We observe that the improvement in test accuracy using the multi-model model is not substantial. However, the performance on the validation dataset is more consistent, indicating a potentially more reliable model. Considering the considerable effort needed to gather distance and elevation data, we have decided to proceed with a model that solely utilizes image features. This approach will streamline the data collection process and still provide us with a reasonably accurate and stable model for our application.
+**Comparison with baseline model**: We observe that the improvement in test accuracy using the multi-model model is not substantial. However, the performance on the validation dataset is more consistent, indicating a potentially more reliable model. Considering the considerable effort needed to gather distance and elevation data, we have decided to proceed with a model that solely utilizes image features. This approach will streamline the data collection process and still provide us with a reasonably accurate and stable model for our application.
 
-##### Generalizability Test on XBD Dataset
-
-![ActualGeneralizability](https://user-images.githubusercontent.com/95386379/234158211-41d48c08-377e-4f07-a7ac-c6a9bb4528c7.png)
-
-Above is the accuracy and runtime of testing the model (which was trained on the Hurricane Harvey dataset) on the xBD dataset, specifically the images with buildings corresponding to Hurricane Michael, Florence, and Matthew. We note that the accuracy is low and specifically, an overwhelming majority of the images are predicted to contain no damage. We believe this is due to how we converted the “tiff” images to images in “jpeg” format. The accuracies of both our conversional approaches, GDAL and tifffile, had similarly mediocre accuracies. 
-
-We strongly believe that all our metrics will be better if we are able to better convert the images from tiff to jpeg. 
-Another next step is to increase the size of the testing dataset. We are currently only using the images in the testing folder of the xBD dataset, but we can include images from the training and the hold dataset as well. This may help us, but the main improvement will definitely come from finding a way to better convert the tiff images to a proper input format. 
-
-#### Model 2
+#### Model 3
 
 After running the autoencoder for 10 epochs, we observed the following loss plot:
 
@@ -198,7 +189,7 @@ After running the autoencoder for 10 epochs, we observed the following loss plot
 
 The above graph shows the loss of the model as a function of epoch. We see that the training loss drops drastically and continues to reduce with the validation loss. They eventually almost equal each other, which shows us that the model is being fit properly.
 
-#### Model 3
+#### Model 4
 To confirm the accuracy of our clustering model, we compared the test data set images with the labels given to us.
 
 ![ModelGeneralizability](https://user-images.githubusercontent.com/95386379/234157762-16472291-332f-410b-9d8b-ce8a32b95067.png)
@@ -211,6 +202,15 @@ We could conclude in this iteration of the algorithm, Cluster 1 seems to contain
 
 ##### Comparing the Clustering Model with Supervised CNN
 Given the test accuracies, we see that the Supervised CNN outperforms the Unsupervised Clustering model in terms of grouping/labeling unlabeled data. The supervised CNN achieved an accuracy of 83.74% while the K-Means Clustering algorithm achieved a maximum accuracy of 69.84%. While the unsupervised model had a lesser performance than the CNN, it performed extremely well for a model that has been trained on only unlabeled data.  
+
+##### Model 5: Generalizability Test on XBD Dataset
+
+![ActualGeneralizability](https://user-images.githubusercontent.com/95386379/234158211-41d48c08-377e-4f07-a7ac-c6a9bb4528c7.png)
+
+**Comparison with baseline model**: Above is the accuracy and runtime of testing the model (which was trained on the Hurricane Harvey dataset) on the xBD dataset, specifically the images with buildings corresponding to Hurricane Michael, Florence, and Matthew. We note that the accuracy is low and specifically, an overwhelming majority of the images are predicted to contain no damage. We believe this is due to how we converted the “tiff” images to images in “jpeg” format. The accuracies of both our conversional approaches, GDAL and tifffile, had similarly mediocre accuracies. 
+
+We strongly believe that all our metrics will be better if we are able to better convert the images from tiff to jpeg. 
+Another next step is to increase the size of the testing dataset. We are currently only using the images in the testing folder of the xBD dataset, but we can include images from the training and the hold dataset as well. This may help us, but the main improvement will definitely come from finding a way to better convert the tiff images to a proper input format. 
 
 ## Conclusions
 
