@@ -210,7 +210,7 @@ We observe that the improvement in test accuracy using the multi-model model is 
 
 #### Generalizability Test on XBD Dataset
 
-ADD TABLE
+![ModelGeneralizability](https://user-images.githubusercontent.com/95386379/234155920-f48602a2-4e3e-4b3a-8b80-250552b9705f.png)
 
 The above table represents various metrics obtained from testing the Binary Classification Neural Network model that was trained on the Hurricane Harvey dataset on the xBD hurricane images, or in other words, our generalizability test. Accuracy is relatively low, which we hypothesize is because we were only able to convert the tiff images to black and white jpeg images and the model was trained on RGB images. We strongly believe that all our metrics will be better if we are able to resolve that issue. 
 
@@ -240,6 +240,7 @@ After running the clustering algorithm, we observed a clear distinction between 
 </div>
 
 We could conclude in this iteration of the algorithm, Cluster 1 seems to contain images of undamaged buildings and Cluster 2 contains images of damaged buildings. 
+
 
 ## Team Contribution to the Project Final
 
