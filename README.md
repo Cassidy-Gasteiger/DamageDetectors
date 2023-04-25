@@ -43,11 +43,11 @@ Given the computational needs of the model, we opted to use the GPU feature of C
 
 #### Hyperparameter tuning: 
 In order to optimize the performance of our CNN model, we conducted a comprehensive hyperparameter tuning process. This process involved fine-tuning various hyperparameters to achieve the best possible accuracy, while minimizing overfitting and maintaining a reasonable training time. The main hyperparameters we considered included the number of epochs, batch size, learning rate, and optimization algorithms.
-•	Number of epochs: We experimented with different numbers of training epochs to find a balance between model convergence and overfitting
-•	Batch size: We explored various batch sizes to strike a balance between computational efficiency and the ability of the model to learn from the data
-•	Learning rate: We investigated different learning rates to ensure the model's convergence and stability during training
-•	Optimization algorithms: We experimented with two optimization algorithms, RMSprop, and Adam, to find the one that best suited our model's architecture and dataset
-•	Model architecture: We also played around with the number of convolutional layers and filter sizes
+- Number of epochs: We experimented with different numbers of training epochs to find a balance between model convergence and overfitting
+- Batch size: We explored various batch sizes to strike a balance between computational efficiency and the ability of the model to learn from the data
+- Learning rate: We investigated different learning rates to ensure the model's convergence and stability during training
+- Optimization algorithms: We experimented with two optimization algorithms, RMSprop, and Adam, to find the one that best suited our model's architecture and dataset
+- Model architecture: We also played around with the number of convolutional layers and filter sizes
 
 #### Model regularization:
 After creating our baseline model, we tested regularization techniques to develop a more generalizable model. First we added random transformations in the form of random rotations, horizontal flips, vertical flips, color brightness, contrast, saturation, and hue, and added random perspective distortions. We also tested adding dropout layers and tested a range of dropout probabilities, ranging from .01 – 0.5 dropout probability and normalization transformations from 1-5 to the weight vectors, to find the optimum dropout probability and model weights. Finally, we tried L2 regularization by adding penalty terms to the loss function.
@@ -73,10 +73,10 @@ To compress the images, we constructed a Deep CNN Autoencoder. Autoencoders work
 Before passing our images into the autoencoder, we converted each of them from color to grayscale. This was done to reduce the number of dimensions in the image and improve the effectiveness of the compression we intended to do. The layers of our autoencoder look like:
 
 1.	Encoder - 
-•	2 convolution layers with stride as 2, kernel as 3, activation function as ReLU and padding as a 3-dimensional matrix
+- 2 convolution layers with stride as 2, kernel as 3, activation function as ReLU and padding as a 3-dimensional matrix
 2.	Decoder - 
-•	2 transposed convolution layers stride as 2, kernel as 3, activation function as ReLU and padding as a 3-dimensional matrix
-•	1 convolution layer with an activation function as Sigmoid
+- 2 transposed convolution layers stride as 2, kernel as 3, activation function as ReLU and padding as a 3-dimensional matrix
+- 1 convolution layer with an activation function as Sigmoid
 
 As we are interested in understanding the difference between the original image and compressed image, we chose Mean Squared Error as the loss function. 
 
@@ -99,69 +99,85 @@ The xBD dataset had 4 labels (no damage, minor damage, major damage, destroyed);
 
 ## Results and Discussion
 
-### Data Exploration:
+### Data Exploration
 
-**Hurricane Harvey Dataset -**
+#### Hurricane Harvey Dataset
+An initial look at the damaged and undamaged Hurricane Harvey images does not reveal a clear visual distinction between the two types of images, although it appears that many of the damaged images may show standing bodies of water around the houses. The dataset is close to balanced, with 13,933 damaged images and 10,384 undamaged images. All images are of the same dimensions.
 
-An initial look at the damaged and undamaged Hurricane Harvey images does not reveal a clear visual distinction between the two types of images, although it appears that many of the damaged images may show standing bodies of water around the houses. The dataset is close to balanced, with 13,933 damaged images and 10,384 undamaged images. All images are of the same dimensions. 
+![Harvey_Sample_Images](https://github.com/your_username/your_repo/blob/main/images/my_image.png](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged_images.png)
 
-![image](images/damaged_undamaged_images.png)
+We explored the geolocation features associated with the image set and found that both damaged and undamaged buildings appear at similar coordinates.
 
-We explored the geolocation features associated with the image set and found that both damaged and undamaged buildings appear at similar coordinates. 
+![Harvey_Sample_Images](https://github.com/your_username/your_repo/blob/main/images/my_image.png](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged_images.png)
 
-![image](images/damaged_undamaged.png)
+In addition, we found that there was not a statistically significant difference in elevation between damaged and undamaged buildings.
 
-In addition, we found that there was not a statistically significant difference in elevation between damaged and undamaged buildings
+IMAGE
 
-![image](images/elevation.png)
+Finally, we explored color features of our images to investigate whether there were visible color differences between damaged and undamaged building images. It appears that there’s a higher mean value of red pixels in damaged building images, but otherwise the distributions appear similar.
+IMAGE
 
-Finally, we explored color features of our images to investigate whether there were visible color differences between damaged and undamaged building images. It appears that there's a higher mean value of red pixels in damaged building images, but otherwise the distributions appear similar.
+#### xBD Dataset 
 
-![image](images/color_scatters.png)
-![image](images/color_scatters_damaged.png)
+We started with sampling some images to understand our image dataset. The below images show damaged (on the left) and undamaged (on the right) buildings in post-Hurricane Florence.
 
-**xBD Dataset -**
+![Harvey_Sample_Images](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/xBD_damaged_undamaged.png)
 
-We started with sampling some images to understand the potential errors of the model we will build in the next step of this project. There were difficulties working with the TIF image format, which was the format of all the images in the dataset. The Python Imaging Library does not support multi-channel 32-bit TIF images so we used NumPy to create an array of RGB values. We then were able to plot this array using matplotlib.
+Once we had the images, we created a table representing the essential information of each image:
+1.	Pre/Post disaster label
+2.	Geographical coordinates
+3.	Sun elevation
+4.	GSD (Ground Sampling Distance)
+5.	Quantification of no damage/major damage/minor damage/destroyed.
 
-<p align="center">
-    <img width="459" alt="preandpost" src="https://user-images.githubusercontent.com/76833593/229260554-5e323fd2-7e11-48b7-9ee1-0137879bafd0.PNG">
-</p>
-
-The first image is pre-Hurricane Florence and the second image is post-Hurricane Florence.
-
-Once we had the images, we created a table representing the essential information of each image:  
-
-1. Pre/Post disaster label 
-2. Geographical coordinates 
-3. Sun elevation 
-4. GSD (Ground Sampling Distance) 
-5. Quantification of no damage/major damage/minor damage/destroyed. 
-    
-The geographical coordinates will be important in ensuring that our model is classifying the data by damage rather than location of the data. Variables such as the sun elevation and the solar azimuth angle will be key indicators in detecting damage. An interesting column is GSD, which gives us an idea of the spatial resolution of the images. Finally, the quantification of damage will serve as the labels of our data. During training, we must normalize the images to a certain set resolution. To help with that, we plotted the resolution of images based on the disaster it corresponded to: 
-
-<p align="center">
-    <img width="400" alt="image1" src="https://user-images.githubusercontent.com/76833593/229260877-fbbb20f6-fc4d-498d-8b69-8cd2280f433a.PNG">
-</p>
+The geographical coordinates will be important in ensuring that our model is classifying the data by damage rather than location of the data. Variables such as the sun elevation and the solar azimuth angle will be key indicators in detecting damage. An interesting column is GSD, which gives us an idea of the spatial resolution of the images. Finally, the quantification of damage will serve as the labels of our data. 
 
 We also charted the number of images per disaster as it guides us to how large our dataset of solely hurricane images will be:
 
-<p align="center">
-    <img width="394" alt="image2" src="https://user-images.githubusercontent.com/76833593/229260903-c6bd546c-9fa3-4138-a120-9fecc9370726.PNG">
-</p>
+![xbd_images_per_hurricane](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/hurricane_xbd_counts.png)
 
-We see that Hurricane Michael and Hurricane Florence have the highest number of images available. We are naturally ignoring the images from Hurricane Harvey as we’ve trained our model using these images.  
+We see that Hurricane Michael and Hurricane Florence have the highest number of images available. We are naturally ignoring the images from Hurricane Harvey as we’ve trained our model using these images.
 
-### Data Cleaning and Preprocessing:  
-
-**Hurricane Harvey Dataset -**
-We rescaled all images from 250 x 250 pixels to 150 x 150 pixels to reduce the training time of our deep learning classification model. We then normalized our images by pixel density to scale the pixel values between 0 and 1, as network training convergence depends on the normalized values.  
-
-Next, we tested two data preprocessing techniques: PCA and K-Means clustering for image compression. The goal was to decrease model training time by reducing the total number of pixels in each image. K-Means image compression was theoretically successful, and reducing the images to just ten clusters while maintaining most important image features: 
-
-![image](KMeans_Clustering.png)
-
+Data Cleaning and Preprocessing:
+Hurricane Harvey Dataset - We rescaled all images from 250 x 250 pixels to 150 x 150 pixels to reduce the training time of our deep learning classification model. We then normalized our images by pixel density to scale the pixel values between 0 and 1, as network training convergence depends on the normalized values.
+Next, we tested two data preprocessing techniques: PCA and K-Means clustering for image compression. The goal was to decrease model training time by reducing the total number of pixels in each image. K-Means image compression was theoretically successful, and reducing the images to just ten clusters while maintaining most important image features:
 However, both methods were extremely computationally intensive given the size and scale of our dataset, and we lacked the computing resources to execute them successfully. Ultimately, we concluded that even if these compression techniques led to decreased model training times, this approach would be net negative for time and computing resources compared to training the model on the uncompressed images given the extensive computing power required to compress the images. Finally, we converted the images to a tensor for use in our CNN model.
+Model Evaluation and Validation:
+Model 1:
+We used a threshold of 0.5 for calculating the accuracy metric. After running the model for 10 epochs, we observed the following:
+Train and Validation Accuracy -
+ PLOTS
+The above graph shows the accuracy of the model as a function of epoch. We see that the train accuracy continues to increase, as well as the validation accuracy with the exception of the eighth epoch.
+Train and Validation Loss -
+The above graph shows the loss of the model as a function of epoch. We again see that the train loss decreases along with the validation loss with the exception of the eighth epoch. One reason for why the eighth epoch is showing such results may be due to overfitting of the model. The model may be learning patterns in the training data that cannot be generalized for the validation data set. Some methods we could take to avoid such overfitting could be weight regularization, adding dropout layers or data augmentation.
+Upon running our model on the test dataset, we noted an accuracy of 0.8374.
+Regularized Model –
+We tested a range of dropout probabilities (.01 – .5) in our second-to-last pooling layer and observed significantly decreased performance on the validation data at every probability compared to our baseline model.
+DROPOUT PLOT
+L2 regularization similarly led to decreased performance on the validation datasets. Augmenting and adding random transformations to the data led to the best results, with increased performance on validation initially, and better loss performance compared to our baseline model. However, the final validation accuracy was about equivalent to our baseline model, and performance on the test dataset decreased significantly to 59.52%.
+
+
+VAL AND ACCURACY PLOT FOR DROPOUT
+Multi-modal model:
+Accuracy on the test dataset: 0.9102
+MULTIMODAL IMAGES
+We observe that the improvement in test accuracy using the multi-model model is not substantial. However, the performance on the validation dataset is more consistent, indicating a potentially more reliable model. Considering the considerable effort needed to gather distance and elevation data, we have decided to proceed with a model that solely utilizes image features. This approach will streamline the data collection process and still provide us with a reasonably accurate and stable model for our application.
+Generalizability Test on XBD Dataset: 
+ADD TABLE
+The above table represents various metrics obtained from testing the Binary Classification Neural Network model that was trained on the Hurricane Harvey dataset on the xBD hurricane images, or in other words, our generalizability test. Accuracy is relatively low, which we hypothesize is because we were only able to convert the tiff images to black and white jpeg images and the model was trained on RGB images. We strongly believe that all our metrics will be better if we are able to resolve that issue. 
+DAMAGED IMAGES CLASSIFICATION
+We observe that in B/W format, it is quite difficult even for the human eye to detect damage. We also notice that we have a high number of predicted positives, leading to both a high count of True and False positives. This is because of the exact threshold we have set in our binary classification. As we adjust this threshold, the numbers would change, leading to different precision, F1, and recall scores as well. However, the feature vectors for both kinds of images are all similar, so adjusting the threshold is not a permanent fix. In other words, if we move the threshold much in any direction, we are likely to receive a high number of predicted negatives or high number of predicted positives. Nonetheless, the current threshold is tuned to lead to the highest accuracy. Another next step is to increase the size of the testing dataset. We are currently only using the images in the testing folder of the xBD dataset, but we can include images from the training and the hold dataset as well. This may help us, but the main improvement will definitely come from finding a way to convert the tiff images to RGB format. 
+Model 2:
+After running the autoencoder for 10 epochs, we observed the following loss plot - 
+NUMBER OF EPOCH THINGS
+The above graph shows the loss of the model as a function of epoch. We see that the training loss drops drastically and continues to reduce with the validation loss. They eventually almost equal each other, which shows us that the model is being fit properly.
+Model 3:
+To confirm the accuracy of our clustering model, we compared the test data set images with the labels given to us – 
+TABLE
+After running the clustering algorithm, we observed a clear distinction between the two clusters created. Below we have examples of images from the two clusters:
+ADD CLUSTER IMAGES
+We could conclude in this iteration of the algorithm, Cluster 1 seemed to contain images of undamaged buildings and Cluster 2 contains images of damaged buildings. 
+
 
 ### Model Evaluation and Validation: 
 
