@@ -181,7 +181,7 @@ Accuracy on the test dataset: 0.9102
 
 **Comparison with baseline model**: We observe that the improvement in test accuracy using the multi-model model is not substantial. However, the performance on the validation dataset is more consistent, indicating a potentially more reliable model. Considering the considerable effort needed to gather distance and elevation data, we have decided to proceed with a model that solely utilizes image features. This approach will streamline the data collection process and still provide us with a reasonably accurate and stable model for our application.
 
-### Generalizability Test on XBD Dataset
+#### Generalizability Test on XBD Dataset
 
 ![ActualGeneralizability](https://user-images.githubusercontent.com/95386379/234158211-41d48c08-377e-4f07-a7ac-c6a9bb4528c7.png)
 
@@ -198,7 +198,7 @@ After running the autoencoder for 10 epochs, we observed the following loss plot
 
 The above graph shows the loss of the model as a function of epoch. We see that the training loss drops drastically and continues to reduce with the validation loss. They eventually almost equal each other, which shows us that the model is being fit properly.
 
-### Model 4: Unsupervised Auto-labeler
+#### Model 4: Unsupervised Auto-labeler
 
 To confirm the accuracy of our clustering model, we compared the test data set images with the labels given to us.
 
