@@ -207,11 +207,11 @@ In Phase 2 we will implement a clustering model to identify images in the xBD da
 
 ## Timeline and Responsibility Distribution
 
-<img width="412" alt="TeamContribution_Final" src="https://user-images.githubusercontent.com/76833593/234146846-2b5ea776-9c45-4725-8dee-a2cb5f79884b.PNG">
+<img width="430" alt="Timeline_Proposal" src="https://user-images.githubusercontent.com/76833593/234146981-c95f3978-f95e-4c17-8257-802a16bda1bd.PNG">
 
 ## Team Contribution to the Project Final Report
 
-<img width="371" alt="newcontributiontable" src="https://user-images.githubusercontent.com/76833593/229261266-968a86f9-852e-42e8-b2a7-0594af6d0925.PNG">
+<img width="412" alt="TeamContribution_Final" src="https://user-images.githubusercontent.com/76833593/234146846-2b5ea776-9c45-4725-8dee-a2cb5f79884b.PNG">
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
