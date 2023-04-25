@@ -207,9 +207,9 @@ In Phase 2 we will implement a clustering model to identify images in the xBD da
 
 ## Timeline and Responsibility Distribution
 
-<img width="430" alt="Timeline_Proposal" src="https://user-images.githubusercontent.com/76833593/221018129-a13bf99d-dd6d-4744-8114-2f6899812a75.PNG">
+<img width="412" alt="TeamContribution_Final" src="https://user-images.githubusercontent.com/76833593/234146846-2b5ea776-9c45-4725-8dee-a2cb5f79884b.PNG">
 
-## Team Contribution to the Project Midterm Report
+## Team Contribution to the Project Final Report
 
 <img width="371" alt="newcontributiontable" src="https://user-images.githubusercontent.com/76833593/229261266-968a86f9-852e-42e8-b2a7-0594af6d0925.PNG">
 
