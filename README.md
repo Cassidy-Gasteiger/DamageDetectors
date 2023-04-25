@@ -6,7 +6,6 @@ Natural disaster zones are difficult to navigate, and it may take weeks or month
 
 Previous research has highlighted the effectiveness of neural networks as they reduce high dimensionality of images without losing information and demonstrate high accuracy in detecting post-disaster building and vegetation damage <sup>1, 2, 3</sup>. Existing damage classification models also incorporate additional features like geolocation data and flood risk index to provide a highly granular map of damage. <sup> 4 </sup>
 
-
 ## Problem Definition
 
 In this project, we aim to: 
@@ -73,10 +72,8 @@ To compress the images, we constructed a Deep CNN Autoencoder. Autoencoders work
 Before passing our images into the autoencoder, we converted each of them from color to grayscale. This was done to reduce the number of dimensions in the image and improve the effectiveness of the compression we intended to do. The layers of our autoencoder look like:
 
 1.	Encoder - 
-
 - 2 convolution layers with stride as 2, kernel as 3, activation function as ReLU and padding as a 3-dimensional matrix
 2.	Decoder - 
-
 - 2 transposed convolution layers stride as 2, kernel as 3, activation function as ReLU and padding as a 3-dimensional matrix
 - 1 convolution layer with an activation function as Sigmoid
 
@@ -106,18 +103,20 @@ The xBD dataset had 4 labels (no damage, minor damage, major damage, destroyed);
 #### Hurricane Harvey Dataset
 An initial look at the damaged and undamaged Hurricane Harvey images does not reveal a clear visual distinction between the two types of images, although it appears that many of the damaged images may show standing bodies of water around the houses. The dataset is close to balanced, with 13,933 damaged images and 10,384 undamaged images. All images are of the same dimensions.
 
-![Harvey_Sample_Images](https://github.com/your_username/your_repo/blob/main/images/my_image.png](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged_images.png)
+![Harvey_Sample_Images](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged_images.png)
 
 We explored the geolocation features associated with the image set and found that both damaged and undamaged buildings appear at similar coordinates.
 
-![Harvey_Sample_Images](https://github.com/your_username/your_repo/blob/main/images/my_image.png](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged_images.png)
+![X_Y_Coordinates](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/damaged_undamaged.png)
 
 In addition, we found that there was not a statistically significant difference in elevation between damaged and undamaged buildings.
 
-IMAGE
+![Elevation_Harvey](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/elevation.png)
 
 Finally, we explored color features of our images to investigate whether there were visible color differences between damaged and undamaged building images. It appears that there’s a higher mean value of red pixels in damaged building images, but otherwise the distributions appear similar.
-IMAGE
+
+![undamaged_color_scatters](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters.png)
+![damaged_color_scatters](https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/color_scatters_damaged.png)
 
 #### xBD Dataset 
 
@@ -140,21 +139,34 @@ We also charted the number of images per disaster as it guides us to how large o
 
 We see that Hurricane Michael and Hurricane Florence have the highest number of images available. We are naturally ignoring the images from Hurricane Harvey as we’ve trained our model using these images.
 
-Data Cleaning and Preprocessing:
-Hurricane Harvey Dataset - We rescaled all images from 250 x 250 pixels to 150 x 150 pixels to reduce the training time of our deep learning classification model. We then normalized our images by pixel density to scale the pixel values between 0 and 1, as network training convergence depends on the normalized values.
+### Data Cleaning and Preprocessing
+
+#### Hurricane Harvey Dataset
+
+We rescaled all images from 250 x 250 pixels to 150 x 150 pixels to reduce the training time of our deep learning classification model. We then normalized our images by pixel density to scale the pixel values between 0 and 1, as network training convergence depends on the normalized values.
 Next, we tested two data preprocessing techniques: PCA and K-Means clustering for image compression. The goal was to decrease model training time by reducing the total number of pixels in each image. K-Means image compression was theoretically successful, and reducing the images to just ten clusters while maintaining most important image features:
 However, both methods were extremely computationally intensive given the size and scale of our dataset, and we lacked the computing resources to execute them successfully. Ultimately, we concluded that even if these compression techniques led to decreased model training times, this approach would be net negative for time and computing resources compared to training the model on the uncompressed images given the extensive computing power required to compress the images. Finally, we converted the images to a tensor for use in our CNN model.
-Model Evaluation and Validation:
-Model 1:
+
+### Model Evaluation and Validation
+
+#### Model 1
+
 We used a threshold of 0.5 for calculating the accuracy metric. After running the model for 10 epochs, we observed the following:
-Train and Validation Accuracy -
- PLOTS
-The above graph shows the accuracy of the model as a function of epoch. We see that the train accuracy continues to increase, as well as the validation accuracy with the exception of the eighth epoch.
-Train and Validation Loss -
-The above graph shows the loss of the model as a function of epoch. We again see that the train loss decreases along with the validation loss with the exception of the eighth epoch. One reason for why the eighth epoch is showing such results may be due to overfitting of the model. The model may be learning patterns in the training data that cannot be generalized for the validation data set. Some methods we could take to avoid such overfitting could be weight regularization, adding dropout layers or data augmentation.
-Upon running our model on the test dataset, we noted an accuracy of 0.8374.
-Regularized Model –
+
+Train and Validation Accuracy and Loss Plots:
+
+<div>
+    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/model_accuracy_plot.png" alt="Baseline Accuracy Plot" width="400"/>
+    <img src="https://github.com/Cassidy-Gasteiger/DamageDetectors/blob/main/images/model_loss_plot.png" alt="Baseline Loss Plot" width="400"/>
+</div>
+
+The above graphs shows the accuracy and loss of the model as a function of epoch. We see that the train accuracy continues to increase, as well as the validation accuracy with the exception of the eighth epoch. We also see that the train loss decreases along with the validation loss with the exception of the eighth epoch. One reason for why the eighth epoch is showing such results may be due to overfitting of the model. The model may be learning patterns in the training data that cannot be generalized for the validation data set. Some methods we could take to avoid such overfitting could be weight regularization, adding dropout layers or data augmentation.
+
+Upon running our model on the test dataset, we noted an accuracy of **0.8374.**
+
+#### Regularized Model
 We tested a range of dropout probabilities (.01 – .5) in our second-to-last pooling layer and observed significantly decreased performance on the validation data at every probability compared to our baseline model.
+
 DROPOUT PLOT
 L2 regularization similarly led to decreased performance on the validation datasets. Augmenting and adding random transformations to the data led to the best results, with increased performance on validation initially, and better loss performance compared to our baseline model. However, the final validation accuracy was about equivalent to our baseline model, and performance on the test dataset decreased significantly to 59.52%.
 
@@ -207,11 +219,11 @@ In Phase 2 we will implement a clustering model to identify images in the xBD da
 
 ## Timeline and Responsibility Distribution
 
-<img width="430" alt="Timeline_Proposal" src="https://user-images.githubusercontent.com/76833593/234146981-c95f3978-f95e-4c17-8257-802a16bda1bd.PNG">
+<img width="430" alt="Timeline_Proposal" src="https://user-images.githubusercontent.com/76833593/221018129-a13bf99d-dd6d-4744-8114-2f6899812a75.PNG">
 
-## Team Contribution to the Project Final Report
+## Team Contribution to the Project Midterm Report
 
-<img width="412" alt="TeamContribution_Final" src="https://user-images.githubusercontent.com/76833593/234146846-2b5ea776-9c45-4725-8dee-a2cb5f79884b.PNG">
+<img width="371" alt="newcontributiontable" src="https://user-images.githubusercontent.com/76833593/229261266-968a86f9-852e-42e8-b2a7-0594af6d0925.PNG">
 
 ## References
 1. Berezina, Polina and Desheng Liu. “Hurricane damage assessment using couple convolutional neural networks: a case study of hurricane Michael.” Geomatics, Natural Hazards and Risks: pp. 414-31. 2021.
