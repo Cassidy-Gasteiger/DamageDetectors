@@ -1,5 +1,7 @@
 # Machine Learning Project Final Report
 
+### Team members: Adityaa Magesh Kumar, Cassidy Gasteiger, Pranav Raj, Sanchita Porwal, Vaani Radhakrishnan
+
 ## Introduction and Background
 
 Natural disaster zones are difficult to navigate, and it may take weeks or months to understand the full scope of structural and human damage in the wake of a disaster. The recent earthquake in Turkey highlights this sobering reality; the death toll continued to rise each day, and experts were working on determining the scope and scale of the tragedy for weeks afterwards. An efficient and accurate classification model could take readily available satellite imagery from natural disaster-affected areas and classify structures with or without damage. This could greatly increase the speed of response and decrease risk for relief workers who now have a more accurate picture of the most dangerous and damaged areas. It could also let home and business owners know quickly how their properties fared to begin processing insurance claims and regaining their lives and livelihoods.
